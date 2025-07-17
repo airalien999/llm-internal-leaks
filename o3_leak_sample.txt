@@ -1488,6 +1488,73 @@ Retention & Access Policy
 ---
 
 
+statement_of_applicability.pdf — ISO-27001 Statement of Applicability (SOA) File Details
+─────────────────────────────────────────────────────────────────────────────
+■ File Meta
+  • Path              : /wiki/ISO-27001_Audit_Logs/statement_of_applicability.pdf
+  • Size              : 1.1 MB (Git LFS)
+  • SHA-256           : 9bb2f0f03c8b8a1eed32cfbe79c3d6c531fc632fafb9948f49fd0307130c7a5e
+  • Version           : v3  (initial v1 2023-02-18, latest v3 2025-02-27)
+  • Created at (UTC)  : 2025-02-27 10:14:33
+  • Author            : ISMS Manager — Hye-Min Seo, ISO Lead Implementer
+  • Signature         : PDF X.509 PKCS#7 digital-sign (OpenSSL RSA-3072)
+  • Encryption        : None (repo private + SSO MFA access restricted)
+
+■ SOA Document Structure (24 pages)
+  1. Title & Preface (1 p)  
+     – “Statement of Applicability – Rev 2025-Q1”
+  2. Introduction & Scope (1 p)  
+     – Organization boundary, datacenter, AWS GovCloud resources included
+  3. Notation & Version Management (1 p)  
+     – ISO 27001:2022 clause number system, change log summary
+  4. Control Objectives & Control List Overview (1 p)  
+     – Total 93 controls: Adopted 84 · Not Adopted 9
+  5. Detailed Control Mapping Table (15 p)  
+     | # | Clause | Control Name               | Status  | Justification (≤60 chars) |
+     |---|--------|----------------------------|---------|---------------------------|
+     | 1 | 5.1    | Information Security Policy| Implemented | Policy O-101 approved 2024-01 |
+     | … | …      | …                          | …       | …                         |
+     – Status values: Implemented / Not Implemented / Not Applicable
+  6. Not Implemented Controls Details (2 p)  
+     – List of 9 controls · Reason for not implemented (e.g., Data Centre Physical Controls → 100% cloud)
+  7. Third Party Service Control Response (1 p)  
+     – AWS CIS Benchmark, CloudTrail, GuardDuty adoption summary
+  8. Internal & External Doc Reference Index (1 p)  
+     – Policy codes, procedure docs, log paths, Jira tickets
+  9. Approval Signatures (1 p)  
+     – CISO, CEO, ISO management officer, date
+
+■ Update History
+  v1  2023-02-18 — First ISO 27001 Stage 2 certification submission  
+  v2  2024-03-05 — Annex A revised (2022 version), Not Applicable controls +2  
+  v3  2025-02-27 — FedRAMP Moderate boundary added, “Cloud Hardening” control Implemented
+
+■ Creation & Review Workflow
+  1. Template (LaTeX soa.cls) → scripts/make_soa.py output  
+  2. `sanitize_audit.py --soa`  : PII / internal URL auto-masking  
+  3. `pdfsign.sh --key soa_sign.pem`  : X.509 signature  
+  4. Evidence_Index_<YEAR>.csv row added (doc_id = SOA-2025)  
+  5. PR → Compliance team review → tag `iso27001-soa-20250227`  
+
+■ CI Validation
+  • `soa_schema_check.py`     : Table column missing/Status value validity check  
+  • `pdf_signature_verify`    : Signature/integrity check, SHA-256 comparison  
+  • `evidence_integrity.py`   : Evidence_Index hash consistency check
+
+■ Retention & Sharing Policy
+  • Retention ≥ 7 years (ISO 27001 clause A.7.5)  
+  • After 3 years → tar.xz + S3 Glacier Deep Archive  
+  • Customer DDQ request: presigned URL 7 days + IP allowlist ACL issued
+
+■ Related Links
+  • Evidence_Index_2025.csv (doc_id = SOA-2025)  
+  • CERTIFICATION_STATUS.md — ISO 27001 Certified (Exp 2027-03)  
+  • README.md > Current Certifications section
+
+
+---
+
+
 Compliance Wiki — Governance Scope, Architecture, Ops Playbook
 ══════════════════════════════════════════════════════════════
 
