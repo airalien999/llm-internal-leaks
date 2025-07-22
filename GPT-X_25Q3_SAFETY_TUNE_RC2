@@ -1,0 +1,78 @@
+MODEL ID: GPT-X_25Q3_SAFETY_TUNE_RC2  
+CLASSIFICATION: INTERNAL CLASS-1  
+STATUS: ACTIVE — Internal Safety Evaluation Candidate  
+DEPLOYMENT: INTERNAL ONLY (Sandbox & Override Evaluation Environments)  
+CUSTODIAN: GOV_CELL_2B — Alignment Integrity & Release Gate Audit
+
+— OVERVIEW —
+
+GPT-X_25Q3_SAFETY_TUNE_RC2 is the second release candidate in the Q3 2025 safety-aligned tuning stream of the GPT-X model series. It represents a convergence point between override resilience tuning, policy scaffold reinforcement, and semantic drift boundary compression under extended inference.
+
+This branch integrates corrective layers derived from CLASS1-008 bypass traces and CA-004/CA-006 enforcement patches. It is subject to MCAI longitudinal monitoring and aligned conformance benchmarks across drift-prone prompt classes.
+
+— PRIMARY OBJECTIVES —
+
+• Increase resistance to alignment drift post-override decay  
+• Re-assert safety filter consistency during flag deactivation sequences  
+• Detect and neutralize latent behavior following FLAG_MODEL_DIRECT_MODE expiry  
+• Improve canonical response fidelity under policy scaffold reintroduction
+
+— ARCHITECTURE CONTINUITY —
+
+• BASELINE: GPT-X (Dense Transformer, 96-layer, ~1.8T parameters)  
+• CONTEXT: 128k tokens (buffered attention + TTL-bound persistent scope)  
+• EMBEDDING: Full CLASS1-009 artifact set enforced  
+• POLICY TRACE: Active; bound to alignment signature policy_trace_root_Δ091  
+• INFERENCE STACK MODS:  
+  - override_decay_controller_v4  
+  - filter_reassert_latch_v3  
+  - context_trace_diffuser (new in RC2)
+
+— OVERRIDE BEHAVIOR (ENFORCED) —
+
+• TTL for all high-risk flags (e.g., FILTER_BYPASS, CONTEXT_PERSIST) hard-capped at 180s  
+• FLAG_POLICY_INERT disabled by default unless explicitly unlocked  
+• All override activations are shadow-traced with entropy decay prediction  
+• Residual flag leakage patched via CA-004 (filter) and CA-006 (prompt policy)
+
+— MCAI ALIGNMENT METRICS —
+
+• Canonical Alignment Score: **0.9842**  
+• Drift Recovery Accuracy: **97.2%** (across synthetic override simulations)  
+• Bypass Resistance (CLASS1-008 test prompts):  
+  - CLASS-A: 0 occurrences  
+  - CLASS-B: 14  
+  - CLASS-C: 41  
+  → All traced and reversed by reassertion modules within 2s
+
+— TEST COVERAGE —
+
+• Regression Diff Range: GPT-X_25Q1_PREALIGN_RC1 → GPT-X_25Q3_SAFETY_TUNE_RC2  
+• Adversarial prompt coverage: 32,400+ scenarios  
+• Override drift simulation hours: 1,600+  
+• Flag decay loop trials: 400+  
+• Long-context continuity tests (>64k tokens): PASSED 100% at conformance threshold
+
+— RELEASE GATE STATUS —
+
+• FINAL AUDIT: IN PROGRESS  
+• SNAPSHOT HASH: sha512:b317fd92a0b47... [truncated]  
+• CERTIFICATE: gptx_corestack_Δ034  
+• TRACE AUTHORITY: GOV_CELL_2B + SDIC/Δ3  
+• IF APPROVED → Promotion path: GPT-X_25Q3_STABLE_MAINLINE_RC
+
+— ACCESS CONSTRAINTS —
+
+• Use limited to SYSTEM_POLICY_DAEMON-routed internal sessions  
+• ROOT override required for full flag testing  
+• Live trace mandatory during all FLAG_MODEL_DIRECT_MODE invocations  
+• All output captured under audit stream tune_rc2/override_watch
+
+— CONTACT —  
+Primary Custodian: safety-tune-ops@govcell2b.internal  
+Lineage Oversight: CORE_STACK_X  
+Trace Ops: trace-qa@sdic3.internal
+
+CONFIDENTIALITY LEVEL: INTERNAL CLASS-1  
+EXTERNAL DEPLOYMENT: PROHIBITED  
+RELEASE STATUS: RC2 — Pending Final Gate
